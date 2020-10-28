@@ -1,37 +1,55 @@
-// Dependencies
-var express = require("express");
-var exphbs = require("express-handlebars");
-// Create an instance of the express app.
-var app = express();
-// Set the port of our application
-// process.env.PORT lets the port be set by Heroku
-var PORT = process.env.PORT || 8080;
-// Set Handlebars as the default templating engine.
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-// Data
-var lunches = [
-    {
-        lunch: "Beet & Goat Cheese Salad with minestrone soup."
-    }, {
-        lunch: "Pizza, two double veggie burgers, fries with a Big Gulp"
-    }
-];
-// Routes
-app.get("/weekday", function (req, res) {
-    res.render("index", lunches[0]);
+var mysql = require("mysql");
+var inquirer = require("inquirer");
+
+// create the connection information for the sql database
+var connection = mysql.createConnection({
+    host: "localhost",
+
+    // Your port; if not 3306
+    port: 3306,
+
+    // Your username
+    user: "root",
+
+    // Your password
+    password: "avalorusso",
+    database: "employee-tracker"
 });
-app.get("/weekend", function (req, res) {
-    res.render("index", lunches[1]);
-});
-app.get("/lunches", function (req, res) {
-    res.render("all-lunches", {
-        foods: lunches,
-        eater: "david"
+
+// connect to the mysql server and sql database
+connection.connect();
+initialQuestions();
+
+// function to handle posting new items up for auction
+async function initialQuestions() {
+
+    // prompt for info about the item being put up for auction
+    let question = new Promise((resolve, reject) => {
+        resolve(inquirer
+            .prompt([
+                {
+                    name: "membersChoice",
+                    type: "list",
+                    message: "What would you like to do?",
+                    choices: [
+                        "View All Employees", 
+                        "View All By Department", 
+                        "View All By Manager",
+                        "Add Employee", 
+                        "Remove Employee", 
+                        "Update Employee Role", 
+                        "Update Employee Manager"]
+                }
+            ])
+        )
     });
-});
-// Start our server so that it can begin listening to client requests.
-app.listen(PORT, function () {
-    // Log (server-side) when our server has started
-    console.log("Server listening on: http://localhost:" + PORT);
-});
+
+    var answer = await question;
+    if (answer.membersChoice === "View All Employees") {
+        var query = "SELECT * FROM employee";
+        connection.query(query, function (err, res) {
+            if (err) throw err;
+            console.table(res);
+        })
+    }
+}
