@@ -1,4 +1,3 @@
--- Drops the programming_db if it already exists --
 DROP DATABASE IF EXISTS employee_tracker;
 -- Created the DB "employee_tracker" (only works on local connections)
 CREATE DATABASE employee_tracker;
@@ -26,13 +25,33 @@ manager_id INT (255)
 );
 -- Inserted a set of records into the table
 INSERT INTO department (id, name)
-VALUE (43, "Kate");
+VALUE (1, "Sales");
+INSERT INTO department (id, name)
+VALUE (2, "Engineering");
+INSERT INTO department (id, name)
+VALUE (3, "Finance");
+INSERT INTO department (id, name)
+VALUE (4, "Legal");
 SELECT * FROM department;
 -- Inserted a set of records into the table
-INSERT INTO role (id, title, salary ,department_id)
-VALUE (103, "Lead Engineer", 80000 , 56);
+INSERT INTO role (title, salary, department_id)
+VALUE ("Lead Engineer", 150000, 2);
+INSERT INTO role (title, salary, department_id)
+VALUE ("Legal Team Lead", 250000, 4);
+INSERT INTO role (title, salary, department_id)
+VALUE ("Accountant", 125000, 3);
+INSERT INTO role (title, salary, department_id)
+VALUE ("Sales Lead", 100000, 1);
+INSERT INTO role (title, salary, department_id)
+VALUE ("Salesperson", 80000, 1);
 SELECT * FROM role;
 -- Inserted a set of records into the table
-INSERT INTO employee (id, first_name, last_name ,role_id,manager_id)
-VALUE (110, "MP", "Santiago" , 285, 43);
+INSERT INTO employee (first_name, last_name, manager_id, role_id)
+VALUE ("Santiago", "MP", null, 1);
+INSERT INTO employee (first_name, last_name, manager_id, role_id)
+VALUE ("Kate", "Amelo", null, 2);
+INSERT INTO employee (first_name, last_name, manager_id, role_id)
+VALUE ("Sasha","Quinn",null,3);
+INSERT INTO employee (first_name, last_name, manager_id, role_id)
+VALUE ("Evan", "Edam", 1, 4);
 SELECT * FROM employee
