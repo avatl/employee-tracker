@@ -5,12 +5,17 @@ In this app, you will be able to input information about team members so the app
 
 ## Created Using
 JavaScript
+
 JSON
+
 MySQL
+
 Heroku
 
 ## Images
 <img src="Assets/emptracker1.png">
 <img src="Assets/emptracker2.png">
 
-<video src="Assets/employee-tracker.mov"></video>
+<video>
+  <source src="Assets/employee-tracker.mov"/>
+</video>
