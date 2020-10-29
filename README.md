@@ -17,5 +17,5 @@ Heroku
 <img src="Assets/emptracker2.png">
 
 <video>
-  <source src="Assets/employee-tracker.mov"/>
+  <source src="https://github.com/avatl/employee-tracker/blob/main/Assets/employee-tracker.mov/">
 </video>
