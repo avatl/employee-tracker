@@ -8,7 +8,11 @@ JavaScript
 
 JSON
 
+Node
+
 MySQL
+
+Inquirer
 
 Heroku
 
@@ -16,6 +20,5 @@ Heroku
 <img src="Assets/emptracker1.png">
 <img src="Assets/emptracker2.png">
 
-<video>
-  <source src="https://github.com/avatl/employee-tracker/blob/main/Assets/employee-tracker.mov/">
-</video>
+## Video
+<link src="https://github.com/avatl/employee-tracker/blob/main/Assets/employee-tracker.mov/">
