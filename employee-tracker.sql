@@ -26,7 +26,7 @@ manager_id INT (255)
 );
 -- Inserted a set of records into the table
 INSERT INTO department (id, name)
-VALUE (100, "Kate");
+VALUE (43, "Kate");
 SELECT * FROM department;
 -- Inserted a set of records into the table
 INSERT INTO role (id, title, salary ,department_id)

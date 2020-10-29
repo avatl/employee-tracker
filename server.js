@@ -1,29 +1,19 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 
-// create the connection information for the sql database
 var connection = mysql.createConnection({
     host: "localhost",
-
-    // Your port; if not 3306
     port: 3306,
-
-    // Your username
     user: "root",
-
-    // Your password
     password: "avalorusso",
-    database: "employee-tracker"
+    database: "employee_tracker"
 });
 
-// connect to the mysql server and sql database
 connection.connect();
 initialQuestions();
 
-// function to handle posting new items up for auction
 async function initialQuestions() {
 
-    // prompt for info about the item being put up for auction
     let question = new Promise((resolve, reject) => {
         resolve(inquirer
             .prompt([
@@ -32,12 +22,12 @@ async function initialQuestions() {
                     type: "list",
                     message: "What would you like to do?",
                     choices: [
-                        "View All Employees", 
-                        "View All By Department", 
-                        "View All By Manager",
-                        "Add Employee", 
-                        "Remove Employee", 
-                        "Update Employee Role", 
+                        "View All Employees",
+                        "View Team by Department",
+                        "View Team by Manager",
+                        "Add Employee",
+                        "Remove Employee",
+                        "Update Employee Role",
                         "Update Employee Manager"]
                 }
             ])
@@ -49,7 +39,84 @@ async function initialQuestions() {
         var query = "SELECT * FROM employee";
         connection.query(query, function (err, res) {
             if (err) throw err;
-            console.table(res);
         })
     }
-}
+
+    if (answer.membersChoice === "View All By Department") {
+        var query = "SELECT * FROM department";
+        connection.query(query, function (err, res) {
+            if (err) throw err;
+        })
+    }
+
+    else if (answer.membersChoice === "View All By Manager") {
+        var query = "SELECT * FROM employee";
+        connection.query(query, function (err, res) {
+            if (err) throw err;
+        })
+    }
+
+    else if (answer.memberChoice === "Add Employee") {
+        var query = "SELECT * FROM employee";
+        connection.query(query, function (err, res) {
+            if (err) throw err;
+        })
+    }
+    
+    else if (answer.memberChoice === "Add Employee") {
+            let addEmployeeQ = new Promise((resolve, reject) => {
+                resolve(inquirer.prompt([
+                    {
+                        name: "firstName",
+                        type: "input",
+                        message: "What is the first name of the employee you would like to add",
+                    },
+                    {
+                        name: "lastName",
+                        type: "input",
+                        message: "What is the last name of the employee you would like to add",
+                    },
+                    {
+                        name: "employeeID",
+                        type: "input",
+                        message: "What is the employee ID for the employee you would like to add",
+                    },
+                    {
+                        name: "employeeRoleID",
+                        type: "input",
+                        message: "What is the role ID for the employee you would like to add",
+                    },
+                    {
+                        name: "employeeManagerID",
+                        type: "input",
+                        message: "What is the ID of the manager for the employee you would like to add",
+                    },
+                ])
+                )
+            });
+            var addAnswer = await addEmployeeQ;
+            connection.query(
+                `INSERT INTO employee SET last_name = '${addAnswer.addEmployee}'`
+            )
+            // add a ? to this await ^
+    
+        }
+    }
+    if (answer.memberChoice === "Remove Employee") {
+        let removeEmployeeQ = new Promise((resolve, reject) => {
+            resolve(inquirer.prompt([
+                {
+                    name: "removeEmployee",
+                    type: "input",
+                    message: "Please type the last name of the employee you would like to remove",
+                }
+            ])
+            )
+        });
+        var removeAnswer = await removeEmployeeQ;
+        connection.query(
+            `DELETE FROM employee WHERE last_name = '${removeAnswer.removeEmployee}'`
+        )
+        // add a ? to this await ^
+
+    }
