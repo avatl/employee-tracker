@@ -13,4 +13,4 @@ Heroku
 <img src="Assets/emptracker1.png">
 <img src="Assets/emptracker2.png">
 
-<embed src="Assets/employee-tracker.mov" 
+<video src="Assets/employee-tracker.mov"></video>
