@@ -31,31 +31,31 @@ function askQuestions() {
         console.log(answers.choice);
         switch (answers.choice) {
 
-            case "view all employees":
+            case "View all employees":
                 viewEmployees()
                 break;
 
-            case "view all departments":
+            case "View all departments":
                 viewDepartments()
                 break;
 
-            case "view all roles":
+            case "View all roles":
                 viewRole()
                 break;
 
-            case "add employee":
+            case "Add employee":
                 addEmployee()
                 break;
 
-            case "add department":
+            case "Add department":
                 addDepartment()
                 break;
 
-            case "add role":
+            case "Add role":
                 addRole()
                 break;
 
-            case "update employee role":
+            case "Update employee role":
                 updateEmployeeRole();
                 break;
 
