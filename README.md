@@ -21,10 +21,4 @@ Heroku
 <img src="Assets/emptracker2.png">
 
 ## Video
-<div>
-<video controls preload width=500>
-<source src="https://github.com/avatl/employee-tracker/blob/main/Assets/employee-tracker.mov/" type="video/quicktime">
-</video>
-</div>
-
-
+https://github.com/avatl/employee-tracker/blob/main/Assets/employee-tracker.mov/
